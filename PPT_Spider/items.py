@@ -8,7 +8,10 @@
 import scrapy
 
 
-class PptSpiderItem(scrapy.Item):
+class PPTSpiderItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    group_name = scrapy.Field()
+    group_url = scrapy.Field()
+
+    ppt_title = scrapy.Field()
+    ppt_url = scrapy.Field()
