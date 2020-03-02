@@ -92,3 +92,18 @@ ITEM_PIPELINES = {
 LOG_LEVEL = 'WARNING'
 
 FILES_STORE = '/Users/tzx/tarena/ppt'
+
+# 分布式设置
+# 1. 重新制定调度器：使用scrapy_redis的调度器
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# 2. 重新制定去重机制：使用scrapy_redis的去重机制
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# 3. REDIS的主机地址和端口号
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+REDIS_PARAMS = {
+    'password': '123456',
+}
+
+# 停止或结束后是否清除请求指纹， True为不清除
+SCHEDULER_PERSIST = False

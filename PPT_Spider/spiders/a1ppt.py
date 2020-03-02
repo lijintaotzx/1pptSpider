@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from scrapy_redis.spiders import RedisSpider
 
 from ..items import PPTSpiderItem
 
 
-class A1pptSpider(scrapy.Spider):
+class A1pptSpider(RedisSpider):
     name = '1ppt'
     allowed_domains = ['www.1ppt.com']
-    start_urls = ['http://www.1ppt.com/xiazai/']
+    # start_urls = ['http://www.1ppt.com/xiazai/']
+    redis_key = 'ppt:spider'
 
     ppt_url = 'http://www.1ppt.com'
 
