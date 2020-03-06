@@ -14,7 +14,7 @@ from .settings import FILES_STORE
 
 class PptSpiderPipeline(FilesPipeline):
     def get_media_requests(self, item, info):
-        print(item['ppt_url'])
+        print(item['ppt_title'])
         yield scrapy.Request(url=item['ppt_url'], meta={'ppt': item})
 
     def check_file_path(self, ppt_item):

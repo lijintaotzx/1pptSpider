@@ -4,7 +4,7 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-
+from fake_useragent import UserAgent
 from scrapy import signals
 
 
@@ -101,3 +101,12 @@ class PptSpiderDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class RandomUseragentMiddleware(object):
+    """
+    Agent中间件
+    """
+    def process_request(self, request, spider):
+        agent = UserAgent().random
+        request.headers['User-Agent'] = agent
