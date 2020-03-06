@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import random
+
 # Define here the models for your spider middleware
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 from fake_useragent import UserAgent
 from scrapy import signals
+
+from .settings import PROXY_LIST
 
 
 class PptSpiderSpiderMiddleware(object):
@@ -107,6 +111,20 @@ class RandomUseragentMiddleware(object):
     """
     Agent中间件
     """
+
     def process_request(self, request, spider):
         agent = UserAgent().random
         request.headers['User-Agent'] = agent
+
+
+class RandomProxyMiddleware(object):
+    """
+    Proxy代理中间件
+    """
+
+    def process_request(self, request, spider):
+        proxy = random.choice(PROXY_LIST)
+        request.meta['proxy'] = proxy
+
+    def process_exception(self, request, exception, spider):
+        return request

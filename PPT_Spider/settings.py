@@ -57,6 +57,15 @@ DOWNLOADER_MIDDLEWARES = {
     'PPT_Spider.middlewares.RandomUseragentMiddleware': 200,
 }
 
+PROXY_LIST = []
+
+if len(PROXY_LIST):
+    DOWNLOADER_MIDDLEWARES.update(
+        {
+            'PPT_Spider.middlewares.RandomProxyMiddleware': 300,
+        }
+    )
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 # EXTENSIONS = {
@@ -108,3 +117,5 @@ REDIS_PARAMS = {
 
 # 停止或结束后是否清除请求指纹， True为不清除
 SCHEDULER_PERSIST = False
+
+# DOWNLOAD_FAIL_ON_DATALOSS = False
